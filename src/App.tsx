@@ -2513,6 +2513,113 @@ export default function App() {
         }}
         playBeep={playBeep}
       />
+
+      {/* 5. PRINTER-FRIENDLY HIGH-CONTRAST BOOKLET (Hidden on screen, shown only when printing) */}
+      <div id="print-booklet-root" className="hidden print:block text-slate-900 bg-white p-6 direction-rtl text-right font-sans">
+        
+        {/* Cover Document Header */}
+        <div className="border-b-4 border-slate-900 pb-5 mb-6 flex items-start justify-between">
+          <div className="space-y-1">
+            <h1 className="text-2xl font-black text-slate-950">
+              دفترچه جامع و خلاصه تفهیمی پودمان پنجم
+            </h1>
+            <p className="text-sm text-slate-600 font-medium">
+              موضوع پودمان: «از ایده تا محصول» • درس کاربر فناوری‌های نوین
+            </p>
+            <p className="text-xs text-slate-500">
+              طراحی انحصاری برای ارائه کلاسی، خلاصه شبِ امتحان و بروشور مباحثه دانش‌آموزی
+            </p>
+          </div>
+          
+          <div className="border border-slate-300 p-3 rounded-lg text-left font-mono text-[10px] text-slate-600 leading-snug space-y-1 bg-slate-50">
+            <div><strong>درس:</strong> کاربر فناوری‌های نوین</div>
+            <div><strong>پایه:</strong> دوازدهم متوسطه دوم</div>
+            <div><strong>سال تحصیلی:</strong> ۱۴۰۵-۱۴۰۶</div>
+            <div><strong>گردآورنده:</strong> سیستم تعاملی ارائه‌ها</div>
+          </div>
+        </div>
+
+        {/* Introduction Section containing some educational context of the Module */}
+        <div className="mb-6 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+          <h2 className="text-xs font-bold text-blue-900 mb-1.5 flex items-center gap-1.5">
+            <span>💡</span> راهنمای مطالعه جزوه پودمان پنجم:
+          </h2>
+          <p className="text-xs text-slate-700 leading-relaxed">
+            این جزوه شامل تمام ۱۰ بخش اساسی کتاب درسی مرتبط با چرخه خلق ایده، اعتبارسنجی چالش‌ها، نمونه‌سازی، تدوین دانش فنی و تولید صنعتی پودمان پنجم است. دانش‌آموزان گرامی می‌توانند از بخش سمت راست هر کارت برای مطالعه نکات فشرده و از خط‌چین‌های تعبیه شده در پایین هر بخش جهت یادداشت‌برداری آزاد و ثبت فرمول‌ها یا نکات دبیر مربوطه استفاده نمایند.
+          </p>
+        </div>
+
+        {/* Dynamic List of Slides */}
+        <div className="space-y-6">
+          {slidesData.map((s, idx) => (
+            <div 
+              key={s.id} 
+              className="print-avoid-break p-5 border border-slate-200 bg-white rounded-2xl flex flex-col justify-between"
+              style={{ minHeight: "180px" }}
+            >
+              {/* Header inside slide block */}
+              <div className="flex items-center justify-between border-b pb-2 mb-3">
+                <span className="text-xs font-black text-blue-950 uppercase tracking-wide bg-slate-100 px-2 py-1 rounded">
+                  بخش {idx + 1}: {s.category}
+                </span>
+                <span className="text-xs text-slate-500 font-mono font-bold">
+                  اسلاید آموزشی {s.id}
+                </span>
+              </div>
+
+              {/* Title & Subtitle */}
+              <div className="space-y-1 mb-2">
+                <h3 className="text-base font-extrabold text-slate-950">
+                  {s.title}
+                </h3>
+                {s.subtitle && (
+                  <p className="text-xs text-slate-600 font-medium">
+                    {s.subtitle}
+                  </p>
+                )}
+              </div>
+
+              {/* Bullet Points */}
+              <div className="space-y-2 my-2 flex-grow pr-1">
+                {s.bullets && s.bullets.length > 0 ? (
+                  <ul className="space-y-1.5 list-none">
+                    {s.bullets.map((b: string, i: number) => (
+                      <li key={i} className="text-xs text-slate-800 pr-4 relative">
+                        {/* Custom robust print list indicator */}
+                        <span className="absolute right-0 top-1.5 w-1.5 h-1.5 bg-slate-800 rounded-full" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-xs text-slate-400 italic pr-3">این بخش شامل محتوای توضیحی خلاصه است.</p>
+                )}
+              </div>
+
+              {/* Interactive Note taking lines for student */}
+              <div className="mt-4 pt-3 border-t border-dashed border-slate-200">
+                <div className="text-[10px] font-bold text-slate-500 flex items-center gap-1 mb-1">
+                  <span>✍️</span>
+                  <span>فضای اختصاصی یادداشت و نکات معلم کلاسی بخش {idx + 1}:</span>
+                </div>
+                <div className="grid grid-cols-1 gap-2 mt-1">
+                  <div className="print-note-line" />
+                  <div className="print-note-line col-span-1 opacity-70" />
+                </div>
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+        {/* Print Footer */}
+        <div className="print-page-break print-avoid-break mt-12 border-t-2 border-slate-300 pt-4 flex items-center justify-between text-[9px] text-slate-400 font-mono">
+          <span>سیستم ارائه‌های تعاملی هوشمند درس کاربر فناوری‌های نوین</span>
+          <span>تهیه شده توسط پارسا غائی • بهار ۱۴۰۵</span>
+          <span>صفحه نهایی جزوه پودمان پنجم</span>
+        </div>
+
+      </div>
     </div>
   );
 }

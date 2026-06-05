@@ -81,3 +81,86 @@
   animation: pulse-glow 2.4s infinite ease-in-out;
 }
 
+/* PREMIUM PRINT RULES */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 15mm 15mm 15mm 15mm;
+  }
+  
+  html, body {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: "Vazirmatn", "Inter", sans-serif !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Hide custom cursor and all screen-only UI modules of app-root except print-booklet-root */
+  #app-root > *:not(#print-booklet-root) {
+    display: none !important;
+  }
+
+  #app-root {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: static !important;
+  }
+
+  /* Display our dedicated printable booklet */
+  #print-booklet-root {
+    display: block !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+    direction: rtl !important;
+    text-align: right !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+  }
+
+  /* Prevent elements breaking awkwardly across pages */
+  .print-avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .print-page-break {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  /* Dotted note lines for student handwriting */
+  .print-note-line {
+    border-bottom: 1px dotted #aaaaaa !important;
+    height: 24px !important;
+    margin-top: 4px !important;
+  }
+
+  /* Print specific text colors and decorations */
+  .print-text-primary {
+    color: #1e3a8a !important; /* deep indigo/blue */
+  }
+
+  .print-text-secondary {
+    color: #4b5563 !important; /* slate gray */
+  }
+
+  .print-border-clean {
+    border: 1px solid #e5e7eb !important;
+  }
+}
+
+
