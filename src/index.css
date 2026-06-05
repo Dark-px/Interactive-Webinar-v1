@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Vazirmatn", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "Noto Sans Arabic", "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Hide scrollbars globally for clean cinematic aesthetics while keeping touch/wheel scrollable */
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+* {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE 10+ and Edge */
+}
+
+/* Custom fade effects and glowing layers if needed */
+.glow-indigo {
+  box-shadow: 0 0 40px -5px rgba(99, 102, 241, 0.15);
+}
+
+.glow-purple {
+  box-shadow: 0 0 45px -5px rgba(168, 85, 247, 0.15);
+}
+
+.glow-amber {
+  box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.15);
+}
+
+/* Custom keyboard action highlights */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.5; }
+  100% { transform: scale(0.95); opacity: 1; }
+}
+
+@keyframes visualizer1 {
+  0% { height: 3px; }
+  100% { height: 12px; }
+}
+
+@keyframes visualizer2 {
+  0% { height: 4px; }
+  100% { height: 14px; }
+}
+
+@keyframes visualizer3 {
+  0% { height: 2px; }
+  100% { height: 10px; }
+}
+
+.key-badge {
+  @apply inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] sm:text-xs font-mono font-bold text-slate-400 bg-slate-800 rounded border border-slate-700 min-w-[20px] shadow-sm;
+}
+
+/* Custom Cursor support */
+@media (pointer: fine) {
+  .custom-cursor-enabled, 
+  .custom-cursor-enabled * {
+    cursor: none !important;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0px rgba(245, 158, 11, 0), 0 0 0px rgba(245, 158, 11, 0);
+    border-color: rgba(15, 23, 42, 1); /* slate-900 default */
+    background-color: rgba(15, 23, 42, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(245, 158, 11, 0.22), 0 0 4px rgba(245, 158, 11, 0.08);
+    border-color: rgba(245, 158, 11, 0.45);
+    background-color: rgba(245, 158, 11, 0.06);
+  }
+}
+
+.subtle-pulse-glow {
+  animation: pulse-glow 2.4s infinite ease-in-out;
+}
+

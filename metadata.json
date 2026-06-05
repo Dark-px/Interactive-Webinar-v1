@@ -1,0 +1,6 @@
+{
+  "name": "ارائه پودمان پنجم: از ایده تا محصول",
+  "description": "یک ارائه اسلایدی بسیار زیبا، حرفه‌ای و تعاملی برای پودمان پنجم درس کاربر فناوری‌های نوین با طراحی مدرن و سبک TEDx",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
